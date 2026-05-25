@@ -186,21 +186,6 @@
             color: #ff4583;
         }
 
-        .badge-pct {
-            background-color: rgba(0, 212, 255, 0.1);
-            color: #00d4ff;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-        }
-
-        .vip-function .badge-pct {
-            background-color: rgba(255, 0, 85, 0.1);
-            color: #ff0055;
-            border: 1px solid rgba(255, 0, 85, 0.4);
-        }
-
         .switch {
             position: relative;
             display: inline-block;
@@ -293,16 +278,16 @@
         <div class="panel-content">
             <div id="aimbot" class="tab-content active">
                 <div class="option-row vip-function">
-                    <span class="option-title">Aimbot VIP</span>
-                    <span class="badge-pct">90%</span>
+                    <span class="option-title">Aimbot Vip 90%</span>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
                 </div>
                 <div class="option-row vip-function">
-                    <span class="option-title">Diminuir Recuo VIP</span>
-                    <span class="badge-pct">90%</span>
+                    <span class="option-title">Recuo Vip 90%</span>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
                 </div>
                 <div class="option-row vip-function">
-                    <span class="option-title">AimFOV VIP</span>
-                    <span class="badge-pct">90%</span>
+                    <span class="option-title">AimFOV VIP 90%</span>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
                 </div>
                 <div class="option-row vip-function">
                     <span class="option-title">Aumentar Precisão VIP</span>
@@ -342,7 +327,6 @@
             tLogin.style.opacity = "0";
             setTimeout(() => { 
                 tLogin.style.display = "none"; 
-                // Abre o menu interno automaticamente ao entrar
                 document.getElementById('menuPainel').style.display = 'block';
             }, 500);
         }
