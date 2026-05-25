@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Tody Trick - VIP Panel</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            font-family: 'Arial Black', Gadget, sans-serif;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #050507;
+        }
+
+        /* ========================================================
+           TELA DE BOAS-VINDAS / ENTRADA DIRETA
+           ======================================================== */
+        #telaLogin {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #050507;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+
+        .login-title {
+            color: #fff;
+            font-size: 26px;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .login-box {
+            width: 85%;
+            max-width: 330px;
+            background-color: #0d0d11;
+            border: 2px solid #ff0055;
+            border-radius: 16px;
+            padding: 40px 20px;
+            box-shadow: 0 0 25px rgba(255, 0, 85, 0.25);
+            text-align: center;
+        }
+
+        .welcome-text {
+            color: #8b949e;
+            font-size: 13px;
+            margin-bottom: 25px;
+            font-family: sans-serif;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: #ff0055;
+            border: none;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+            transition: transform 0.1s;
+        }
+
+        .login-btn:active {
+            transform: scale(0.97);
+            background: #d60046;
+        }
+
+        /* ========================================================
+           PAINEL PRINCIPAL DO USUÁRIO
+           ======================================================== */
+        .info-click {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            color: rgba(0, 212, 255, 0.4);
+            font-size: 12px;
+            letter-spacing: 1px;
+            z-index: 1;
+        }
+
+        .panel-container {
+            display: none; 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 360px;
+            background-color: #0d1117;
+            border: 2px solid #00d4ff;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .panel-header {
+            background: linear-gradient(135deg, #0072ff, #00d4ff);
+            padding: 15px;
+            text-align: center;
+            color: #fff;
+            font-size: 18px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .panel-tabs {
+            display: flex;
+            background-color: #161b22;
+            border-bottom: 2px solid #00d4ff;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 5px;
+            background: none;
+            border: none;
+            color: #8b949e;
+            font-size: 11px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: #00d4ff;
+            background-color: #0d1117;
+            border-bottom: 3px solid #00d4ff;
+            text-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
+        }
+
+        .panel-content {
+            padding: 20px;
+            min-height: 220px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .option-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #161b22;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .option-row.vip-function {
+            border: 1px solid rgba(255, 0, 85, 0.3);
+            background-color: #1a1118;
+        }
+
+        .option-title {
+            color: #c9d1d9;
+            font-size: 13px;
+        }
+
+        .vip-function .option-title {
+            color: #ff4583;
+        }
+
+        .badge-pct {
+            background-color: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .vip-function .badge-pct {
+            background-color: rgba(255, 0, 85, 0.1);
+            color: #ff0055;
+            border: 1px solid rgba(255, 0, 85, 0.4);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+        }
+
+        .switch input { opacity: 0; width: 0; height: 0; }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #21262d;
+            transition: .3s;
+            border-radius: 24px;
+            border: 1px solid #30363d;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #fff;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #00d4ff;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            border-color: #00d4ff;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+
+        .vip-function input:checked + .slider {
+            background-color: #ff0055;
+            box-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+            border-color: #ff0055;
+        }
+
+        .inject-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-bottom: 12px;
+            text-shadow: 0 0 5px rgba(0,212,255,0.3);
+            transition: all 0.2s;
+        }
+
+        .inject-btn:active {
+            transform: scale(0.98);
+            background: #00d4ff;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="telaLogin">
+        <div class="login-title">TODY TRICK</div>
+        <div class="login-box">
+            <div class="welcome-text">BEM-VINDO AO PAINEL OFICIAL.<br>CLIQUE ABAIXO PARA ENTRAR DIRETAMENTE.</div>
+            <button class="login-btn" onclick="entrarDireto()">ENTRAR NO PAINEL</button>
+        </div>
+    </div>
+
+    <div class="info-click">DÊ 3 CLIQUES RÁPIDOS NA TELA PARA ABRIR/FECHAR</div>
+
+    <div class="panel-container" id="menuPainel">
+        <div class="panel-header">TODY TRICK VIP</div>
+        
+        <div class="panel-tabs">
+            <button class="tab-btn active" onclick="mudarAba('aimbot')">AIMBOT</button>
+            <button class="tab-btn" onclick="mudarAba('otimizacao')">OTIMIZAÇÃO</button>
+            <button class="tab-btn" onclick="mudarAba('config')">CONFIG</button>
+        </div>
+
+        <div class="panel-content">
+            <div id="aimbot" class="tab-content active">
+                <div class="option-row vip-function">
+                    <span class="option-title">Aimbot VIP</span>
+                    <span class="badge-pct">90%</span>
+                </div>
+                <div class="option-row vip-function">
+                    <span class="option-title">Diminuir Recuo VIP</span>
+                    <span class="badge-pct">90%</span>
+                </div>
+                <div class="option-row vip-function">
+                    <span class="option-title">AimFOV VIP</span>
+                    <span class="badge-pct">90%</span>
+                </div>
+                <div class="option-row vip-function">
+                    <span class="option-title">Aumentar Precisão VIP</span>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+            </div>
+
+            <div id="otimizacao" class="tab-content">
+                <div class="option-row">
+                    <span class="option-title">Diminuir Lag</span>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <div class="option-row">
+                    <span class="option-title">Otimizar Jogo</span>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <div class="option-row">
+                    <span class="option-title">Latência</span>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <div class="option-row vip-function">
+                    <span class="option-title">Aumentar FPS (VIP)</span>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+            </div>
+
+            <div id="config" class="tab-content">
+                <button class="inject-btn" onclick="injetarCheat(event, 'FREE FIRE NORMAL')">INJETAR FREE FIRE NORMAL</button>
+                <button class="inject-btn" onclick="injetarCheat(event, 'FREE FIRE MAX')">INJETAR FREE FIRE MAX</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function entrarDireto() {
+            let tLogin = document.getElementById("telaLogin");
+            tLogin.style.opacity = "0";
+            setTimeout(() => { 
+                tLogin.style.display = "none"; 
+                // Abre o menu interno automaticamente ao entrar
+                document.getElementById('menuPainel').style.display = 'block';
+            }, 500);
+        }
+
+        let cliques = 0;
+        let timer;
+        window.addEventListener('click', (e) => {
+            if (document.getElementById("telaLogin").style.display !== "none") return;
+            if (e.target.closest('.panel-container')) return;
+            cliques++;
+            clearTimeout(timer);
+            timer = setTimeout(() => { cliques = 0; }, 400);
+            if (cliques === 3) {
+                let p = document.getElementById('menuPainel');
+                p.style.display = (p.style.display === 'block') ? 'none' : 'block';
+                cliques = 0;
+            }
+        });
+
+        function mudarAba(idAba) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(idAba).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function injetarCheat(e, tipoFf) {
+            let btn = e.target;
+            let originalText = btn.innerText;
+            btn.disabled = true;
+            btn.innerText = "INJETANDO EM " + tipoFf + "...";
+            btn.style.borderColor = "#ffcc00";
+            btn.style.color = "#ffcc00";
+            
+            setTimeout(() => {
+                btn.innerText = "INJETADO COM SUCESSO!";
+                btn.style.borderColor = "#00ff66";
+                btn.style.color = "#00ff66";
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    btn.style.borderColor = "#00d4ff";
+                    btn.style.color = "#00d4ff";
+                }, 2000);
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
