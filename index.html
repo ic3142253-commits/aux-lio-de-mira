@@ -3,100 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Tody Trick - Brutal VIP</title>
+    <title>TRICK 1.0</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             user-select: none;
-            font-family: 'Arial Black', Gadget, sans-serif;
+            font-family: 'Impact', 'Arial Black', sans-serif;
         }
 
         body, html {
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: #030303; /* Preto quase puro */
+            background-color: #030202;
         }
 
-        /* ========================================================
-           TELA DE BOAS-VINDAS / ENTRADA BRUTAL
-           ======================================================== */
+        /* TELA DE LOGIN / BOAS-VINDAS ESTILO FFH4X */
         #telaLogin {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #030303;
+            background-color: #050000;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s;
+            transition: opacity 0.4s ease;
         }
 
-        .login-title {
-            color: #fff;
-            font-size: 28px;
-            letter-spacing: 4px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            text-shadow: 0 0 15px rgba(255, 0, 0, 0.6); /* Glow Vermelho */
+        .brand-title {
+            color: #e60000;
+            font-size: 46px;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(230, 0, 0, 0.7);
+            font-style: italic;
         }
 
         .login-box {
             width: 85%;
-            max-width: 330px;
-            background-color: #0a0a0a; /* Preto ligeiramente mais claro */
-            border: 2px solid #b30000; /* Vermelho Escuro Escovado */
-            border-radius: 10px; /* Bordas mais quadradas */
-            padding: 40px 20px;
-            box-shadow: 0 0 30px rgba(179, 0, 0, 0.4);
+            max-width: 320px;
+            background-color: #0d0c0c;
+            border: 2px solid #e60000;
+            padding: 30px 20px;
+            box-shadow: 0 0 25px rgba(230, 0, 0, 0.3);
             text-align: center;
+            clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
         }
 
         .welcome-text {
-            color: #b0b0b0;
-            font-size: 13px;
-            margin-bottom: 30px;
+            color: #a6a6a6;
+            font-size: 11px;
+            margin-bottom: 25px;
             font-family: sans-serif;
-            font-weight: bold;
-            line-height: 1.6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.5;
         }
 
         .login-btn {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #b30000, #4a0000); /* Degradê Vermelho Sangue */
-            border: none;
+            padding: 14px;
+            background: linear-gradient(180deg, #cc0000 0%, #800000 100%);
+            border: 1px solid #ff3333;
             color: #fff;
-            border-radius: 6px;
-            font-size: 15px;
-            letter-spacing: 2px;
+            font-size: 18px;
+            letter-spacing: 3px;
             cursor: pointer;
+            font-weight: bold;
+            text-shadow: 0 2px 2px rgba(0,0,0,0.8);
+            box-shadow: 0 3px 10px rgba(204, 0, 0, 0.4);
             text-transform: uppercase;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.7);
-            box-shadow: 0 4px 15px rgba(179, 0, 0, 0.5);
-            transition: transform 0.1s;
         }
 
         .login-btn:active {
-            transform: scale(0.97);
-            box-shadow: 0 2px 8px rgba(179, 0, 0, 0.3);
+            transform: scale(0.98);
+            background: #800000;
         }
 
-        /* ========================================================
-           PAINEL PRINCIPAL BRUTAL
-           ======================================================== */
+        /* PAINEL PRINCIPAL */
         .info-click {
             position: absolute;
-            top: 20px;
+            top: 15px;
             width: 100%;
             text-align: center;
-            color: rgba(179, 0, 0, 0.5);
-            font-size: 12px;
+            color: rgba(230, 0, 0, 0.5);
+            font-size: 11px;
             letter-spacing: 1px;
             z-index: 1;
+            font-family: sans-serif;
+            text-transform: uppercase;
         }
 
         .panel-container {
@@ -106,56 +104,55 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 90%;
-            max-width: 360px;
-            background-color: #080808;
-            border: 2px solid #b30000;
-            border-radius: 8px;
-            box-shadow: 0 0 25px rgba(179, 0, 0, 0.4);
+            max-width: 350px;
+            background-color: #0a0909;
+            border: 2px solid #e60000;
+            box-shadow: 0 0 30px rgba(230, 0, 0, 0.4);
             overflow: hidden;
             z-index: 10;
         }
 
         .panel-header {
-            background: linear-gradient(135deg, #4a0000, #000000);
-            padding: 18px;
+            background: linear-gradient(90deg, #1f0000 0%, #4d0000 50%, #1f0000 100%);
+            padding: 14px;
             text-align: center;
             color: #fff;
-            font-size: 20px;
+            font-size: 22px;
             letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
-            border-bottom: 1px solid rgba(179, 0, 0, 0.3);
+            border-bottom: 2px solid #e60000;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         .panel-tabs {
             display: flex;
-            background-color: #050505;
-            border-bottom: 2px solid #b30000;
+            background-color: #050404;
+            border-bottom: 1px solid #330000;
         }
 
         .tab-btn {
             flex: 1;
-            padding: 14px 5px;
+            padding: 12px 5px;
             background: none;
             border: none;
-            color: #808080;
-            font-size: 12px;
+            color: #666;
+            font-size: 13px;
             cursor: pointer;
-            text-align: center;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            transition: all 0.3s;
+            transition: color 0.2s;
         }
 
         .tab-btn.active {
-            color: #fff;
-            background-color: #080808;
-            border-bottom: 3px solid #b30000;
-            text-shadow: 0 0 8px rgba(179, 0, 0, 0.7);
+            color: #e60000;
+            background-color: #0a0909;
+            border-bottom: 2px solid #e60000;
+            text-shadow: 0 0 5px rgba(230,0,0,0.5);
         }
 
         .panel-content {
-            padding: 22px;
-            min-height: 220px;
+            padding: 18px;
+            max-height: 320px;
+            overflow-y: auto;
         }
 
         .tab-content {
@@ -170,23 +167,39 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #050505;
-            padding: 14px 18px;
-            border-radius: 6px;
-            margin-bottom: 14px;
-            border: 1px solid rgba(179, 0, 0, 0.15);
+            background-color: #121010;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-left: 3px solid #e60000;
+            border-right: 1px solid #261414;
+            border-top: 1px solid #261414;
+            border-bottom: 1px solid #261414;
         }
 
         .option-title {
-            color: #e0e0e0;
+            color: #e6e6e6;
             font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
+        /* ELEMENTO FIXO */
+        .fixed-badge {
+            background-color: #260000;
+            color: #ff3333;
+            font-size: 10px;
+            padding: 4px 8px;
+            border: 1px solid #e60000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CUSTOM SWITCHES (LIGA/DESLIGA) */
         .switch {
             position: relative;
             display: inline-block;
-            width: 48px;
-            height: 26px;
+            width: 42px;
+            height: 20px;
         }
 
         .switch input { opacity: 0; width: 0; height: 0; }
@@ -195,28 +208,26 @@
             position: absolute;
             cursor: pointer;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #1a1a1a;
-            transition: .3s;
-            border-radius: 26px;
-            border: 1px solid #333;
+            background-color: #262121;
+            transition: .2s;
+            border: 1px solid #403535;
         }
 
         .slider:before {
             position: absolute;
             content: "";
-            height: 18px;
-            width: 18px;
-            left: 4px;
-            bottom: 3px;
-            background-color: #666;
-            transition: .3s;
-            border-radius: 50%;
+            height: 14px;
+            width: 14px;
+            left: 2px;
+            bottom: 2px;
+            background-color: #736767;
+            transition: .2s;
         }
 
         input:checked + .slider {
-            background-color: #b30000;
-            box-shadow: 0 0 12px rgba(179, 0, 0, 0.6);
-            border-color: #b30000;
+            background-color: #e60000;
+            border-color: #ff3333;
+            box-shadow: 0 0 8px rgba(230, 0, 0, 0.6);
         }
 
         input:checked + .slider:before {
@@ -224,106 +235,112 @@
             background-color: #fff;
         }
 
+        /* BOTÕES DE INJEÇÃO */
+        .inject-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
         .inject-btn {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
-            border: 1px solid #b30000;
-            color: #b30000;
-            border-radius: 6px;
-            cursor: pointer;
+            background: #140202;
+            border: 1px solid #cc0000;
+            color: #cc0000;
             font-size: 13px;
-            margin-bottom: 14px;
+            letter-spacing: 2px;
+            cursor: pointer;
             text-transform: uppercase;
-            text-shadow: 0 0 6px rgba(179, 0, 0, 0.4);
+            box-shadow: 0 0 5px rgba(204,0,0,0.1);
             transition: all 0.2s;
         }
 
         .inject-btn:active {
-            transform: scale(0.98);
-            background: #b30000;
+            background: #cc0000;
             color: #fff;
-            box-shadow: 0 0 15px rgba(179, 0, 0, 0.6);
+            box-shadow: 0 0 12px #cc0000;
         }
     </style>
 </head>
 <body>
 
     <div id="telaLogin">
-        <div class="login-title">TODY TRICK</div>
+        <div class="brand-title">TRICK 1.0</div>
         <div class="login-box">
-            <div class="welcome-text">ACESSO RESTRITO.<br>PAINEL BRUTAL ATIVADO.<br>CLIQUE ABAIXO PARA ENTRAR.</div>
-            <button class="login-btn" onclick="entrarDireto()">ENTRAR NO PAINEL</button>
+            <div class="welcome-text">SISTEMA MODDER PRONTO.<br>CLIQUE ABAIXO PARA ENTRAR NO COMPONENTE.</div>
+            <button class="login-btn" onclick="entrarDireto()">ENTRAR</button>
         </div>
     </div>
 
-    <div class="info-click">3 CLIQUES RÁPIDOS NA TELA PARA ABRIR/FECHAR</div>
+    <div class="info-click">3 CLIQUES NA TELA OCULTAM OU EXIBEM O MENU</div>
 
     <div class="panel-container" id="menuPainel">
-        <div class="panel-header">TODY TRICK BRUTAL</div>
+        <div class="panel-header">TRICK 1.0</div>
         
         <div class="panel-tabs">
-            <button class="tab-btn active" onclick="mudarAba('aimbot')">AIMBOT</button>
+            <button class="tab-btn active" onclick="mudarAba('configuracao')">CONFIGURAÇÃO</button>
             <button class="tab-btn" onclick="mudarAba('otimizacao')">OTIMIZAÇÃO</button>
-            <button class="tab-btn" onclick="mudarAba('config')">CONFIG</button>
+            <button class="tab-btn" onclick="mudarAba('injecao')">INJETAR</button>
         </div>
 
         <div class="panel-content">
-            <div id="aimbot" class="tab-content active">
+            <div id="configuracao" class="tab-content active">
                 <div class="option-row">
-                    <span class="option-title">Aimbot Vip 90%</span>
+                    <span class="option-title">Aimbot 85%</span>
                     <label class="switch"><input type="checkbox"><span class="slider"></span></label>
                 </div>
                 <div class="option-row">
-                    <span class="option-title">Recuo Vip 90%</span>
+                    <span class="option-title">Trava na cabeça 80%</span>
                     <label class="switch"><input type="checkbox"><span class="slider"></span></label>
                 </div>
                 <div class="option-row">
-                    <span class="option-title">AimFOV VIP 90%</span>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                    <span class="option-title">Aimfov 80%</span>
+                    <span class="fixed-badge">Fixo</span>
                 </div>
                 <div class="option-row">
-                    <span class="option-title">Aumentar Precisão VIP</span>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                    <span class="option-title">NoRecoil 85%</span>
+                    <span class="fixed-badge">Fixo</span>
                 </div>
             </div>
 
             <div id="otimizacao" class="tab-content">
                 <div class="option-row">
-                    <span class="option-title">Diminuir Lag</span>
+                    <span class="option-title">Forçar FPS</span>
                     <label class="switch"><input type="checkbox"><span class="slider"></span></label>
                 </div>
                 <div class="option-row">
-                    <span class="option-title">Otimizar Jogo</span>
+                    <span class="option-title">Otimizar jogo</span>
                     <label class="switch"><input type="checkbox"><span class="slider"></span></label>
                 </div>
                 <div class="option-row">
-                    <span class="option-title">Latência</span>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                </div>
-                <div class="option-row">
-                    <span class="option-title">Aumentar FPS (VIP)</span>
+                    <span class="option-title">Diminuir lag</span>
                     <label class="switch"><input type="checkbox"><span class="slider"></span></label>
                 </div>
             </div>
 
-            <div id="config" class="tab-content">
-                <button class="inject-btn" onclick="injetarCheat(event, 'FREE FIRE NORMAL')">INJETAR FREE FIRE NORMAL</button>
-                <button class="inject-btn" onclick="injetarCheat(event, 'FREE FIRE MAX')">INJETAR FREE FIRE MAX</button>
+            <div id="injecao" class="tab-content">
+                <div class="inject-container">
+                    <button class="inject-btn" onclick="injetarCheat(event, 'FREE FIRE NORMAL')">FREE FIRE NORMAL</button>
+                    <button class="inject-btn" onclick="injetarCheat(event, 'FREE FIRE MAX')">FREE FIRE MAX</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Função do Botão Entrar
         function entrarDireto() {
             let tLogin = document.getElementById("telaLogin");
             tLogin.style.opacity = "0";
             setTimeout(() => { 
                 tLogin.style.display = "none"; 
                 document.getElementById('menuPainel').style.display = 'block';
-            }, 500);
+            }, 400);
         }
 
+        // Sistema de 3 Cliques para sumir/aparecer o menu
         let cliques = 0;
         let timer;
         window.addEventListener('click', (e) => {
@@ -339,6 +356,7 @@
             }
         });
 
+        // Alternância de abas
         function mudarAba(idAba) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -346,26 +364,27 @@
             event.target.classList.add('active');
         }
 
+        // Simulação de Injeção Visual
         function injetarCheat(e, tipoFf) {
             let btn = e.target;
             let originalText = btn.innerText;
             btn.disabled = true;
-            btn.innerText = "INJETANDO EM " + tipoFf + "...";
-            btn.style.borderColor = "#ff9900"; /* Laranja Alerta */
+            btn.innerText = "INJETANDO TRICK...";
+            btn.style.borderColor = "#ff9900";
             btn.style.color = "#ff9900";
             
             setTimeout(() => {
-                btn.innerText = "INJETADO COM SUCESSO!";
-                btn.style.borderColor = "#00ff00"; /* Verde Sucesso */
-                btn.style.color = "#00ff00";
+                btn.innerText = "SUCESSO (TRICK ACTIVE)!";
+                btn.style.borderColor = "#00ff66";
+                btn.style.color = "#00ff66";
                 
                 setTimeout(() => {
                     btn.innerText = originalText;
                     btn.disabled = false;
-                    btn.style.borderColor = "#b30000"; /* De volta pro Vermelho */
-                    btn.style.color = "#b30000";
+                    btn.style.borderColor = "#cc0000";
+                    btn.style.color = "#cc0000";
                 }, 2000);
-            }, 2500);
+            }, 2000);
         }
     </script>
 </body>
